@@ -302,37 +302,121 @@
   .skill-card ul li:last-child { border-bottom: none; }
 
   /* ── PORTFOLIO / HIGHLIGHTS ── */
-  #portfolio { background: var(--white); }
-  .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-  .portfolio-card {
-    border-radius: 14px; overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.07);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .portfolio-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
-  .portfolio-card-header {
-    padding: 1.5rem 1.75rem;
-    background: linear-gradient(135deg, var(--navy), var(--blue));
-    display: flex; align-items: center; gap: 0.9rem;
-  }
-  .portfolio-card-header .icon {
-    width: 48px; height: 48px; border-radius: 10px;
-    background: rgba(255,255,255,0.15);
-    display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
-  }
-  .portfolio-card-header h3 { color: white; font-size: 0.95rem; font-weight: 600; line-height: 1.3; }
-  .portfolio-card-header .sub { color: rgba(255,255,255,0.55); font-size: 0.78rem; margin-top: 0.2rem; }
-  .portfolio-card-body { padding: 1.4rem 1.6rem 1.6rem; background: var(--cream); }
-  .portfolio-card-body p { font-size: 0.84rem; color: var(--muted); line-height: 1.75; margin-bottom: 1rem; }
-  .metric-row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-  .metric {
-    flex: 1; min-width: 72px;
-    background: white; border-radius: 8px; padding: 0.65rem 0.6rem; text-align: center;
-    border: 1px solid rgba(0,0,0,0.07);
-  }
-  .metric-val { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--teal); }
-  .metric-lbl { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.04em; }
+ /* ── PORTFOLIO / HIGHLIGHTS ── */
+#portfolio { background: var(--white); }
 
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; /* slightly increased for breathing room */
+}
+
+/* KEY FIX: make cards behave consistently */
+.portfolio-card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.07);
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.portfolio-card-header {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.portfolio-card-header .icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.portfolio-card-header h3 {
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.portfolio-card-header .sub {
+  color: rgba(255,255,255,0.55);
+  font-size: 0.78rem;
+  margin-top: 0.2rem;
+}
+
+/* KEY FIX: structured body */
+.portfolio-card-body {
+  padding: 1.5rem;
+  background: var(--white);
+
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* KEY FIX: normalize text height */
+.portfolio-card-body p {
+  font-size: 0.84rem;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+
+  min-height: 72px;
+}
+
+/* KEY FIX: align metrics at bottom */
+.metric-row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.metric {
+  flex: 1;
+  min-width: 110px; /* increased so text fits */
+  background: white;
+  border-radius: 8px;
+  padding: 0.75rem 0.6rem;
+  text-align: center;
+  border: 1px solid rgba(0,0,0,0.07);
+}
+
+.metric-val {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1rem, 1.2vw, 1.3rem); /* less aggressive scaling */
+  color: var(--teal);
+
+  white-space: normal;     /* allow wrapping */
+  overflow: visible;       /* no clipping */
+  text-overflow: unset;
+
+  line-height: 1.2;
+  word-break: break-word;  /* prevents overflow */
+}
+
+.metric-lbl {
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
 
   /* ── VIDEOS ── */
   #videos { background: var(--cream); }
@@ -402,21 +486,42 @@
 
   /* ── EDUCATION ── */
   #education { background: var(--warm); }
-  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    align-items: start; /* FIX: prevents cards from stretching to match tallest */
+  }
   .edu-card {
-    background: white; border-radius: 12px; padding: 1.5rem 1.75rem;
+    background: white;
+    border-radius: 12px;
+    /* FIX: consistent padding with enough room for content */
+    padding: 1.5rem 1.75rem;
+    /* FIX: all cards use the same teal left border — no more accent override */
     border-left: 4px solid var(--teal);
     box-shadow: 0 2px 12px rgba(0,0,0,0.05);
     transition: transform 0.3s, box-shadow 0.3s;
+    /* FIX: ensure content never bleeds outside */
+    overflow: hidden;
+    word-break: break-word;
   }
   .edu-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,128,128,0.1); }
   .edu-type {
     font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em;
-    color: var(--teal); font-weight: 700; margin-bottom: 0.45rem;
+    /* FIX: all labels use the same teal color */
+    color: var(--teal);
+    font-weight: 700; margin-bottom: 0.45rem;
   }
-  .edu-degree { font-size: 0.97rem; font-weight: 600; color: var(--navy); margin-bottom: 0.3rem; line-height: 1.35; }
+  .edu-degree {
+    font-size: 0.97rem; font-weight: 600; color: var(--navy);
+    margin-bottom: 0.3rem; line-height: 1.35;
+  }
   .edu-school { font-size: 0.88rem; color: var(--muted); }
-  .edu-year { font-size: 0.76rem; color: var(--muted); font-weight: 500; margin-top: 0.45rem; }
+  .edu-year {
+    font-size: 0.76rem; color: var(--muted); font-weight: 500; margin-top: 0.45rem;
+    /* FIX: allow long text to wrap properly */
+    line-height: 1.5;
+  }
 
   /* ── CONTACT ── */
   #contact {
@@ -748,6 +853,8 @@
           <li>JavaScript &amp; Python (basic)</li>
           <li>AI tools: ChatGPT, generative AI</li>
           <li>SCORM content packaging</li>
+          <li>Video editing: Filmora, CapCut, TopView</li>
+          <li>Design &amp; layout: Canva</li>
         </ul>
       </div>
       <div class="skill-card">
@@ -874,7 +981,8 @@
           <p>Licensed RPm since December 2017 — applying psychological assessment principles to learner evaluation design, competency mapping, and data-driven training improvement.</p>
           <div class="metric-row">
             <div class="metric"><div class="metric-val">2017</div><div class="metric-lbl">Licensed</div></div>
-            <div class="metric"><div class="metric-val">7+</div><div class="metric-lbl">Yrs Practice</div></div>
+            <!-- FIX: changed from "7+ Yrs Practice" to "Active" credential status -->
+            <div class="metric"><div class="metric-val">Active</div><div class="metric-lbl">PRC License</div></div>
             <div class="metric"><div class="metric-val">RPm</div><div class="metric-lbl">Credential</div></div>
           </div>
         </div>
@@ -950,8 +1058,9 @@
         <div class="edu-school">Bridge Education Group</div>
         <div class="edu-year">20-Hour Micro-credential · May 2021</div>
       </div>
-      <div class="edu-card" style="border-left-color: var(--accent);">
-        <div class="edu-type" style="color: var(--accent);">Ongoing</div>
+      <!-- FIX: changed label from "Ongoing" to "Certification" — no more overflow issue -->
+      <div class="edu-card">
+        <div class="edu-type">Certification</div>
         <div class="edu-degree">SCORM &amp; xAPI Content Standards</div>
         <div class="edu-school">Applied through LMS administration work</div>
         <div class="edu-year">Practical experience with SCORM packaging &amp; deployment</div>
@@ -973,4 +1082,11 @@
       <a href="#" class="contact-link"> Philippines — Remote Only</a>
     </div>
   </div>
-</s
+</section>
+
+<footer>
+  © 2025 Radge Louise Lucero · All rights reserved
+</footer>
+
+</body>
+</html>
