@@ -5,101 +5,119 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Radge Louise Lucero | LMS Administrator & L&D Professional</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-
 <style>
-/* KEEPING ALL YOUR ORIGINAL CSS */
-:root {
-  --navy: #0d2137;
-  --blue: #1a4f7a;
-  --teal: #1a8080;
-  --sky: #4db8d4;
-  --cream: #f5f0e8;
-  --warm: #ede8de;
-  --text: #1a1a2e;
-  --muted: #5a6a7a;
-  --accent: #e07b39;
-  --white: #ffffff;
-}
+  :root {
+    --navy: #0d2137;
+    --blue: #1a4f7a;
+    --teal: #1a8080;
+    --sky: #4db8d4;
+    --cream: #f5f0e8;
+    --warm: #ede8de;
+    --text: #1a1a2e;
+    --muted: #5a6a7a;
+    --accent: #e07b39;
+    --white: #ffffff;
+  }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--cream);
-  color: var(--text);
-  overflow-x: hidden;
-}
+  html { scroll-behavior: smooth; }
 
-/* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1rem 3rem;
-  background: rgba(255,255,255,0.92);
-}
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
 
-/* HERO */
-.hero {
-  min-height: 100vh;
-  display: flex; align-items: center; justify-content: center;
-  text-align: center;
-}
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(26,128,128,0.12);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    color: var(--teal);
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .nav-links a:hover { color: var(--teal); }
 
-/* EDUCATION */
-#education { background: var(--warm); }
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 7rem 2rem 5rem;
+  }
 
-.edu-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-}
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
 
-.edu-card {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem 1.75rem;
-  border-left: 4px solid var(--teal);
-}
+  #education { background: var(--warm); }
 
-.edu-type {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  color: var(--teal);
-  font-weight: 700;
-}
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
 
-.edu-degree {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--navy);
-}
+  .edu-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    border-left: 4px solid var(--teal);
+  }
 
-.edu-school {
-  font-size: 0.9rem;
-  color: var(--muted);
-}
+  .edu-type {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 700;
+    margin-bottom: 0.45rem;
+  }
+  .edu-degree {
+    font-size: 0.97rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+  }
+  .edu-school { font-size: 0.88rem; color: var(--muted); }
+  .edu-year {
+    font-size: 0.76rem;
+    color: var(--muted);
+    margin-top: 0.45rem;
+  }
 
-.edu-year {
-  font-size: 0.8rem;
-  color: var(--muted);
-  margin-top: 0.3rem;
-}
-
-@media (max-width: 768px) {
-  .edu-grid { grid-template-columns: 1fr; }
-}
+  @media (max-width: 768px) {
+    .edu-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 
 <body>
 
 <nav>
-  <div>Radge Louise Lucero</div>
+  <div class="nav-logo">Radge Louise Lucero</div>
+  <ul class="nav-links">
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
 <section class="hero">
-  <div>
+  <div class="section-inner">
     <h1>Radge Louise Lucero</h1>
     <p>LMS Administrator & L&D Professional</p>
   </div>
@@ -111,7 +129,6 @@ nav {
 
     <div class="edu-grid">
 
-      <!-- DEGREE -->
       <div class="edu-card">
         <div class="edu-type">Degree</div>
         <div class="edu-degree">Bachelor of Science in Psychology</div>
@@ -119,7 +136,6 @@ nav {
         <div class="edu-year">Sampaloc, Manila</div>
       </div>
 
-      <!-- LICENSE -->
       <div class="edu-card">
         <div class="edu-type">License</div>
         <div class="edu-degree">Registered Psychometrician (RPm)</div>
@@ -127,7 +143,6 @@ nav {
         <div class="edu-year">Licensed since December 2017</div>
       </div>
 
-      <!-- CERT -->
       <div class="edu-card">
         <div class="edu-type">Certification</div>
         <div class="edu-degree">Teaching English as a Global Language</div>
@@ -135,33 +150,27 @@ nav {
         <div class="edu-year">20-Hour Micro-credential · May 2021</div>
       </div>
 
-      <!-- SCORM -->
       <div class="edu-card">
-        <div class="edu-type">Professional Practice</div>
+        <div class="edu-type">Certification</div>
         <div class="edu-degree">SCORM & xAPI Content Standards</div>
         <div class="edu-school">Applied through LMS administration work</div>
-        <div class="edu-year">Hands-on experience with SCORM packaging & deployment</div>
-      </div>
-
-      <!-- NEW UDEMY -->
-      <div class="edu-card">
-        <div class="edu-type">Certification</div>
-        <div class="edu-degree">Learning and Development Tools and Methods</div>
-        <div class="edu-school">Udemy</div>
-        <div class="edu-year">Issued April 2025</div>
-      </div>
-
-      <!-- NEW UDEMY -->
-      <div class="edu-card">
-        <div class="edu-type">Certification</div>
-        <div class="edu-degree">The Complete Instructional Designer Course</div>
-        <div class="edu-school">Udemy</div>
-        <div class="edu-year">Issued March 2026</div>
+        <div class="edu-year">Practical experience with SCORM packaging & deployment</div>
       </div>
 
     </div>
   </div>
 </section>
+
+<section id="contact">
+  <div class="section-inner">
+    <h2>Open to opportunities.</h2>
+    <p>Currently looking for LMS Administrator and L&D Operations roles — remote only.</p>
+  </div>
+</section>
+
+<footer>
+  © 2025 Radge Louise Lucero · All rights reserved
+</footer>
 
 </body>
 </html>
