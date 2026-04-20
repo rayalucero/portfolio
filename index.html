@@ -30,6 +30,7 @@
     overflow-x: hidden;
   }
 
+  /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -53,118 +54,1033 @@
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--teal); }
 
+  /* ── HERO ── */
   .hero {
     min-height: 100vh;
+    background: linear-gradient(135deg, #e8f4f8 0%, #dff0f5 40%, #e4f0eb 100%);
     display: flex; align-items: center;
     padding: 7rem 2rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -150px; right: -150px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(147,210,220,0.4) 0%, transparent 70%);
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -80px; left: 5%;
+    width: 450px; height: 450px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(180,225,200,0.35) 0%, transparent 70%);
+  }
+  .hero-inner {
+    max-width: 860px; margin: 0 auto; width: 100%;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    position: relative; z-index: 1; gap: 0;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--teal); font-weight: 700; margin-bottom: 1rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 32px; height: 2px; background: var(--teal);
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 5vw, 3.8rem);
+    color: var(--teal);
+    line-height: 1.1;
+    margin-bottom: 0.4rem;
+  }
+  .hero h1 em { color: var(--teal); font-style: normal; }
+  .hero-fullname {
+    font-size: 0.82rem; color: var(--muted); margin-bottom: 0.3rem; font-weight: 400;
+  }
+  .hero-nickname-line {
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .hero-nickname-line span.label { font-size: 0.82rem; color: var(--muted); }
+  .hero-nickname-line span.raya {
+    background: #c9eedd; color: #1a7a5a;
+    padding: 0.2rem 0.75rem; border-radius: 100px;
+    font-weight: 700; font-size: 0.88rem; letter-spacing: 0.04em;
+  }
+  .hero-nickname-line span.wave { font-size: 1rem; }
+  .hero-sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  .hero-tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; justify-content: center;
+  }
+  .tag {
+    padding: 0.35rem 0.85rem;
+    border: 1px solid rgba(26,128,128,0.25);
+    border-radius: 100px;
+    font-size: 0.78rem; color: var(--teal);
+    background: rgba(26,128,128,0.07);
+    letter-spacing: 0.04em;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2.5rem;
+  }
+  .btn {
+    padding: 0.75rem 1.75rem; border-radius: 6px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.25s;
+    display: inline-block;
+  }
+  .btn-primary {
+    background: var(--teal); color: white; border: none;
+  }
+  .btn-primary:hover { background: #178080; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,128,128,0.3); }
+  .btn-outline {
+    background: transparent; color: var(--navy);
+    border: 1.5px solid rgba(26,79,122,0.3);
+  }
+  .btn-outline:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+
+  /* Hero stats */
+  .hero-stats {
+    display: flex; flex-direction: row; gap: 1.25rem; width: 100%; justify-content: center; margin-top: 0.5rem;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.75);
+    border: 1px solid rgba(26,128,128,0.15);
+    border-top: 3px solid var(--teal);
+    border-radius: 12px;
+    padding: 1.75rem 1.5rem;
+    backdrop-filter: blur(4px);
+    transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+    flex: 1; text-align: center; min-width: 140px;
+  }
+  .stat-card:hover {
+    background: rgba(255,255,255,0.95);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(26,128,128,0.12);
+  }
+  .stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .stat-label { color: var(--muted); font-size: 0.85rem; }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--teal); font-weight: 600; margin-bottom: 0.6rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before { content: ''; display: block; width: 24px; height: 2px; background: var(--teal); }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    color: var(--navy);
+    margin-bottom: 2.5rem;
+    line-height: 1.15;
   }
 
-  section { padding: 5rem 2rem; }
-  .section-inner { max-width: 1100px; margin: 0 auto; }
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+  .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: start; }
+  .about-text p {
+    color: var(--muted); line-height: 1.85; margin-bottom: 1.25rem; font-size: 1rem;
+  }
+  .about-text p strong { color: var(--navy); font-weight: 600; }
+  .about-highlights { display: flex; flex-direction: column; gap: 0.85rem; }
+  .highlight-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    background: var(--cream);
+    border-radius: 10px;
+    border-left: 3px solid var(--teal);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .highlight-item:hover { transform: translateX(4px); box-shadow: 2px 4px 16px rgba(26,128,128,0.08); }
+  .highlight-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--teal), var(--blue));
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 1rem; flex-shrink: 0;
+  }
+  .highlight-text strong { display: block; font-size: 0.88rem; color: var(--navy); margin-bottom: 0.2rem; }
+  .highlight-text span { font-size: 0.8rem; color: var(--muted); }
 
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--cream); }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 2px; background: linear-gradient(to bottom, var(--teal), transparent);
+  }
+  .timeline-item {
+    position: relative; padding: 0 0 2.5rem 2.25rem;
+    opacity: 0; transform: translateX(-20px);
+    animation: slideIn 0.5s forwards;
+  }
+  .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+  .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+  .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
+  .timeline-dot {
+    position: absolute; left: -2.42rem; top: 6px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--teal); border: 3px solid var(--cream);
+    box-shadow: 0 0 0 3px var(--teal);
+  }
+  .timeline-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;
+  }
+  .timeline-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .timeline-card:hover { box-shadow: 0 6px 20px rgba(26,128,128,0.1); transform: translateY(-2px); }
+  .timeline-role { font-size: 1.05rem; font-weight: 600; color: var(--navy); }
+  .timeline-company { color: var(--teal); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
+  .timeline-date {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em;
+    color: white; background: var(--blue);
+    padding: 0.25rem 0.7rem; border-radius: 100px;
+    white-space: nowrap;
+  }
+  .timeline-bullets { margin-top: 0.65rem; padding-left: 0.5rem; }
+  .timeline-bullets li {
+    color: var(--muted); font-size: 0.9rem; line-height: 1.7;
+    margin-bottom: 0.4rem; list-style: none; padding-left: 1.2rem; position: relative;
+  }
+  .timeline-bullets li::before {
+    content: '›'; position: absolute; left: 0; color: var(--sky); font-weight: 700;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--navy); }
+  #skills .section-title { color: var(--white); }
+  #skills .section-label { color: var(--sky); }
+  #skills .section-label::before { background: var(--sky); }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .skill-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 1.6rem 1.75rem;
+    transition: background 0.3s, transform 0.3s, border-color 0.3s;
+  }
+  .skill-card:hover {
+    background: rgba(77,184,212,0.1);
+    border-color: rgba(77,184,212,0.3);
+    transform: translateY(-4px);
+  }
+  .skill-card-icon { font-size: 1.6rem; margin-bottom: 0.75rem; }
+  .skill-card h3 { color: var(--sky); font-size: 0.88rem; font-weight: 700; margin-bottom: 0.65rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  .skill-card ul { list-style: none; }
+  .skill-card ul li {
+    color: rgba(255,255,255,0.65); font-size: 0.82rem; line-height: 1.55;
+    padding: 0.28rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .skill-card ul li:last-child { border-bottom: none; }
+
+  /* ── PORTFOLIO / HIGHLIGHTS ── */
+ /* ── PORTFOLIO / HIGHLIGHTS ── */
+#portfolio { background: var(--white); }
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; /* slightly increased for breathing room */
+}
+
+/* KEY FIX: make cards behave consistently */
+.portfolio-card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.07);
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.portfolio-card-header {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.portfolio-card-header .icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.portfolio-card-header h3 {
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.portfolio-card-header .sub {
+  color: rgba(255,255,255,0.55);
+  font-size: 0.78rem;
+  margin-top: 0.2rem;
+}
+
+/* KEY FIX: structured body */
+.portfolio-card-body {
+  padding: 1.5rem;
+  background: var(--white);
+
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* KEY FIX: normalize text height */
+.portfolio-card-body p {
+  font-size: 0.84rem;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+
+  min-height: 72px;
+}
+
+/* KEY FIX: align metrics at bottom */
+.metric-row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.metric {
+  flex: 1;
+  min-width: 110px; /* increased so text fits */
+  background: white;
+  border-radius: 8px;
+  padding: 0.75rem 0.6rem;
+  text-align: center;
+  border: 1px solid rgba(0,0,0,0.07);
+}
+
+.metric-val {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1rem, 1.2vw, 1.3rem); /* less aggressive scaling */
+  color: var(--teal);
+
+  white-space: normal;     /* allow wrapping */
+  overflow: visible;       /* no clipping */
+  text-overflow: unset;
+
+  line-height: 1.2;
+  word-break: break-word;  /* prevents overflow */
+}
+
+.metric-lbl {
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+  /* ── VIDEOS ── */
+  #videos { background: var(--cream); }
+  .videos-intro {
+    color: var(--muted); font-size: 0.97rem; line-height: 1.75;
+    max-width: 640px; margin-bottom: 2.5rem;
+  }
+  .videos-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .video-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.07);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(26,128,128,0.13);
+  }
+  .video-thumb {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    padding: 2rem 1.75rem;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 130px;
+  }
+  .video-thumb-icon {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    border: 2px solid rgba(255,255,255,0.2);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .video-card:hover .video-thumb-icon {
+    background: rgba(255,255,255,0.25);
+    transform: scale(1.08);
+  }
+  .video-info {
+    padding: 1.2rem 1.4rem 1.4rem;
+  }
+  .video-tag {
+    font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--teal); font-weight: 700; margin-bottom: 0.4rem;
+  }
+  .video-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem; color: var(--navy);
+    margin-bottom: 0.5rem; line-height: 1.3;
+  }
+  .video-desc {
+    font-size: 0.82rem; color: var(--muted); line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+  .video-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.8rem; font-weight: 600; color: var(--teal);
+    text-decoration: none; letter-spacing: 0.03em;
+    transition: gap 0.2s;
+  }
+  .video-link:hover { gap: 0.65rem; }
+  @media (max-width: 900px) {
+    .videos-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── EDUCATION ── */
   #education { background: var(--warm); }
-
   .edu-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.25rem;
+    align-items: start; /* FIX: prevents cards from stretching to match tallest */
   }
-
   .edu-card {
     background: white;
     border-radius: 12px;
+    /* FIX: consistent padding with enough room for content */
     padding: 1.5rem 1.75rem;
+    /* FIX: all cards use the same teal left border — no more accent override */
     border-left: 4px solid var(--teal);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    /* FIX: ensure content never bleeds outside */
+    overflow: hidden;
+    word-break: break-word;
   }
-
+  .edu-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,128,128,0.1); }
   .edu-type {
-    font-size: 0.7rem;
-    text-transform: uppercase;
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em;
+    /* FIX: all labels use the same teal color */
     color: var(--teal);
-    font-weight: 700;
-    margin-bottom: 0.45rem;
+    font-weight: 700; margin-bottom: 0.45rem;
   }
   .edu-degree {
-    font-size: 0.97rem;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 0.3rem;
+    font-size: 0.97rem; font-weight: 600; color: var(--navy);
+    margin-bottom: 0.3rem; line-height: 1.35;
   }
   .edu-school { font-size: 0.88rem; color: var(--muted); }
   .edu-year {
-    font-size: 0.76rem;
-    color: var(--muted);
-    margin-top: 0.45rem;
+    font-size: 0.76rem; color: var(--muted); font-weight: 500; margin-top: 0.45rem;
+    /* FIX: allow long text to wrap properly */
+    line-height: 1.5;
   }
 
-  @media (max-width: 768px) {
-    .edu-grid { grid-template-columns: 1fr; }
+  /* ── CONTACT ── */
+  #contact {
+    background: linear-gradient(135deg, var(--navy), #0a2a45);
+    text-align: center;
+  }
+  #contact .section-title { color: white; margin-bottom: 1rem; }
+  #contact .section-label { justify-content: center; }
+  #contact .section-label::before { display: none; }
+  .contact-sub { color: rgba(255,255,255,0.5); margin-bottom: 2rem; font-size: 0.95rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.7rem 1.4rem;
+    border: 1px solid rgba(77,184,212,0.3);
+    border-radius: 8px;
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    font-size: 0.88rem; font-weight: 500;
+    transition: all 0.25s;
+  }
+  .contact-link:hover {
+    background: rgba(77,184,212,0.12);
+    border-color: var(--sky);
+    color: var(--sky);
+    transform: translateY(-2px);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #081520;
+    text-align: center; padding: 1.5rem;
+    color: rgba(255,255,255,0.3); font-size: 0.78rem;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 3.5rem 1.5rem; }
+    .hero { padding: 6rem 1.5rem 4rem; }
+    .hero-inner, .about-grid, .edu-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .skills-grid, .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { flex-wrap: wrap; }
+    .stat-card { min-width: calc(50% - 0.75rem); }
+  }
+  @media (max-width: 600px) {
+    .skills-grid, .portfolio-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero-stats { flex-direction: column; }
+    .stat-card { min-width: unset; }
+    .section-inner { padding: 0; }
   }
 </style>
 </head>
-
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="nav-logo">Radge Louise Lucero</div>
   <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#portfolio">Highlights</a></li>
+    <li><a href="#videos">Videos</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="section-inner">
-    <h1>Radge Louise Lucero</h1>
-    <p>LMS Administrator & L&D Professional</p>
+  <div class="hero-inner">
+      <div class="hero-eyebrow">LMS Administrator &amp; L&D Professional</div>
+      <h1>Radge Louise <em>Lucero</em></h1>
+      <p class="hero-fullname">Maria Ysabella Radge Louise S. Lucero, RPm</p>
+      <div class="hero-nickname-line">
+        <span class="label">but everyone calls me</span>
+        <span class="raya">Raya</span>
+        <span class="wave">👋</span>
+      </div>
+      <p class="hero-sub">Philippines · Remote Work</p>
+      <div class="hero-tags">
+        <span class="tag">LMS Administration</span>
+        <span class="tag">SCORM / xAPI</span>
+        <span class="tag">Data Integrity</span>
+        <span class="tag">eLearning Delivery</span>
+        <span class="tag">L&D Operations</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Get in Touch</a>
+        <a href="#experience" class="btn btn-outline">View Experience</a>
+      </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">7+</div>
+        <div class="stat-label">Years in Education &amp; Training</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3+</div>
+        <div class="stat-label">Years in Curriculum Development</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">2+</div>
+        <div class="stat-label">Years in L&amp;D &amp; eLearning</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="education">
+<!-- ABOUT -->
+<section id="about">
   <div class="section-inner">
-    <h2>Education & Certifications</h2>
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">Learning systems, done right.</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a <strong>detail-oriented L&D professional and LMS Administrator</strong> with 3+ years of hands-on experience managing learning platforms — from configuring courses and managing user roles to tracking enrollments, auditing data, and supporting program delivery at scale.</p>
+        <p>My career spans corporate training, eLearning development, and academic instruction across Southeast Asia. I've administered LMS platforms for distributed remote teams, deployed SCORM-compatible content, and built structured onboarding journeys that ensure consistent learner experiences.</p>
+        <p>I hold a <strong>Bachelor's in Psychology</strong> and am a <strong>Registered Psychometrician</strong> — a background that sharpens my attention to data accuracy, learner behavior, and assessment design. I thrive in cross-functional environments, partnering with instructional designers and operations leads to keep learning systems running smoothly.</p>
+      </div>
+      <div class="about-highlights">
+        <div class="highlight-item">
+          <div class="highlight-icon">🗂️</div>
+          <div class="highlight-text">
+            <strong>LMS Administration</strong>
+            <span>Course config, user roles, permissions, enrollment management, and data audits</span>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">📊</div>
+          <div class="highlight-text">
+            <strong>Data Integrity &amp; Reporting</strong>
+            <span>Accurate training records, routine audits, completion tracking, and compliance support</span>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🤝</div>
+          <div class="highlight-text">
+            <strong>Cross-Functional Collaboration</strong>
+            <span>Partnering with Instructional Design and L&D Operations for seamless program delivery</span>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🧪</div>
+          <div class="highlight-text">
+            <strong>Registered Psychometrician</strong>
+            <span>Licensed since 2017 — applying behavioral science to learning design and assessment</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class="edu-grid">
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label">Work History</div>
+    <h2 class="section-title">Experience that speaks to the role.</h2>
+    <div class="timeline">
 
-      <div class="edu-card">
-        <div class="edu-type">Degree</div>
-        <div class="edu-degree">Bachelor of Science in Psychology</div>
-        <div class="edu-school">University of the East – Manila</div>
-        <div class="edu-year">Sampaloc, Manila</div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role">L&D Trainer &amp; LMS Administrator</div>
+            <div class="timeline-company">Alpha Iota BPO — Kuala Lumpur, Malaysia (Remote)</div>
+          </div>
+          <div class="timeline-date">May 2025 – Present</div>
+        </div>
+        <ul class="timeline-bullets">
+          <li>Administered day-to-day LMS operations: course uploads, user access, role assignments, permission management</li>
+          <li>Managed learner enrollments and tracked completions for online and virtual instructor-led programs</li>
+          <li>Developed and deployed SCORM-compatible eLearning modules; built structured onboarding journeys and IPP courses</li>
+          <li>Conducted routine data audits to validate LMS records and support quarterly performance reporting</li>
+          <li>Troubleshot learner access, enrollment, and completion issues; escalated complex system errors</li>
+          <li>Collaborated with instructional design and L&D operations teams on process documentation and workflow standardization</li>
+          <li>Achieved <strong>94% overall training satisfaction</strong> and 95% trainer ratings in Q3 2025</li>
+        </ul>
+        </div>
       </div>
 
-      <div class="edu-card">
-        <div class="edu-type">License</div>
-        <div class="edu-degree">Registered Psychometrician (RPm)</div>
-        <div class="edu-school">Professional Regulation Commission</div>
-        <div class="edu-year">Licensed since December 2017</div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role">Subleader &amp; Curriculum Developer</div>
+            <div class="timeline-company">Sun Asterisk Software Development Inc. — Cebu City (Remote)</div>
+          </div>
+          <div class="timeline-date">Aug 2022 – Apr 2025</div>
+        </div>
+        <ul class="timeline-bullets">
+          <li>Supported project lead in planning and executing training activities aligned to timelines and documentation standards</li>
+          <li>Developed structured programming curriculum (HTML, CSS, JS, Python, Scratch) for Japanese learners</li>
+          <li>Tracked individual learner progress through assessments, refining content based on outcomes</li>
+          <li>Earned MVP, Special Thanks, and Best Effort Attendance awards for performance and contribution</li>
+        </ul>
+        </div>
       </div>
 
-      <div class="edu-card">
-        <div class="edu-type">Certification</div>
-        <div class="edu-degree">Teaching English as a Global Language</div>
-        <div class="edu-school">Bridge Education Group</div>
-        <div class="edu-year">20-Hour Micro-credential · May 2021</div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role">Part-Time English Trainer</div>
+            <div class="timeline-company">Bahay Turo Philippines — Remote</div>
+          </div>
+          <div class="timeline-date">Aug 2025 – Jan 2026</div>
+        </div>
+        <ul class="timeline-bullets">
+          <li>Delivered English training programs to employees of Telus International, adapting to varied proficiency levels</li>
+        </ul>
+        </div>
       </div>
 
-      <div class="edu-card">
-        <div class="edu-type">Certification</div>
-        <div class="edu-degree">SCORM & xAPI Content Standards</div>
-        <div class="edu-school">Applied through LMS administration work</div>
-        <div class="edu-year">Practical experience with SCORM packaging & deployment</div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role">Part-Time ESL Teacher</div>
+            <div class="timeline-company">Lingora — Remote</div>
+          </div>
+          <div class="timeline-date">Jun 2022 – Jan 2025</div>
+        </div>
+        <ul class="timeline-bullets">
+          <li>Provided tailored English tutoring to Korean students through personalized audio classes, with significant emphasis on refining speaking and listening skills</li>
+        </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role">ESL Teacher</div>
+            <div class="timeline-company">BCM Manila (Formerly CETT) — Pasig City</div>
+          </div>
+          <div class="timeline-date">May 2019 – Mar 2022</div>
+        </div>
+        <ul class="timeline-bullets">
+          <li>Provided personalized, one-on-one English instruction to Korean students through audio classes, focusing on improving speaking and listening skills</li>
+          <li>Conducted assessments of incoming and former students to accurately determine English proficiency levels, resulting in a more tailored and effective curriculum for each individual</li>
+        </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role">Preschool Teacher</div>
+            <div class="timeline-company">Write 'N Play Preschool — Cainta, Rizal</div>
+          </div>
+          <div class="timeline-date">Mar 2018 – Apr 2019</div>
+        </div>
+        <ul class="timeline-bullets">
+          <li>Created a nurturing and developmentally appropriate learning environment for preschool students ages 4–6, fostering social, emotional, and cognitive growth</li>
+          <li>Effectively managed classroom behavior and established positive teacher-student relationships</li>
+        </ul>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
 
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label">Capabilities</div>
+    <h2 class="section-title">What I bring to the table.</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-icon">🗂️</div>
+        <h3>LMS Administration</h3>
+        <ul>
+          <li>Course configuration &amp; deployment</li>
+          <li>User roles &amp; permission management</li>
+          <li>Enrollment &amp; completion tracking</li>
+          <li>SCORM / xAPI content support</li>
+          <li>Access troubleshooting &amp; escalation</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">📊</div>
+        <h3>Data &amp; Reporting</h3>
+        <ul>
+          <li>Training records maintenance</li>
+          <li>Routine data audits &amp; validation</li>
+          <li>Completion &amp; compliance tracking</li>
+          <li>Microsoft Excel (reporting, logs)</li>
+          <li>Performance benchmarking support</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🎓</div>
+        <h3>Instructional Design</h3>
+        <ul>
+          <li>Curriculum &amp; learning journey design</li>
+          <li>eLearning module development</li>
+          <li>Needs analysis &amp; competency mapping</li>
+          <li>Assessment &amp; evaluation design</li>
+          <li>Onboarding program development</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🤝</div>
+        <h3>L&amp;D Operations</h3>
+        <ul>
+          <li>Process documentation &amp; SOPs</li>
+          <li>Workflow standardization</li>
+          <li>Cross-functional collaboration</li>
+          <li>Program delivery coordination</li>
+          <li>SME partnerships</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">💻</div>
+        <h3>Technical Skills</h3>
+        <ul>
+          <li>Microsoft 365 (Excel, Teams, Word, PPT)</li>
+          <li>HTML &amp; CSS (foundational)</li>
+          <li>JavaScript &amp; Python (basic)</li>
+          <li>AI tools: ChatGPT, generative AI</li>
+          <li>SCORM content packaging</li>
+          <li>Video editing: Filmora, CapCut, TopView</li>
+          <li>Design &amp; layout: Canva</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🌏</div>
+        <h3>Training Delivery</h3>
+        <ul>
+          <li>Virtual facilitation (Southeast Asia)</li>
+          <li>Cross-cultural training delivery</li>
+          <li>Business English instruction</li>
+          <li>Blended &amp; in-person learning</li>
+          <li>Learner assessment &amp; progress eval</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO / HIGHLIGHTS -->
+<section id="portfolio">
+  <div class="section-inner">
+    <div class="section-label">Key Highlights</div>
+    <h2 class="section-title">Impact &amp; Achievements</h2>
+    <div class="portfolio-grid">
+
+      <div class="portfolio-card">
+        <div class="portfolio-card-header">
+          <div class="icon">🏆</div>
+          <div>
+            <h3>Q3 2025 Training Performance</h3>
+            <div class="sub">Alpha Iota BPO</div>
+          </div>
+        </div>
+        <div class="portfolio-card-body">
+          <p>Achieved top-tier satisfaction scores across three dimensions in Q3 2025 through reliable LMS delivery, SCORM content quality, and performance-focused facilitation.</p>
+          <div class="metric-row">
+            <div class="metric"><div class="metric-val">94%</div><div class="metric-lbl">Overall Rating</div></div>
+            <div class="metric"><div class="metric-val">95%</div><div class="metric-lbl">Trainer Rating</div></div>
+            <div class="metric"><div class="metric-val">94%</div><div class="metric-lbl">Leader Rating</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-card-header">
+          <div class="icon">🚀</div>
+          <div>
+            <h3>LMS Onboarding Journey Build</h3>
+            <div class="sub">Alpha Iota BPO</div>
+          </div>
+        </div>
+        <div class="portfolio-card-body">
+          <p>Designed and deployed a structured new hire onboarding learning journey and IPP course series within the LMS, standardizing curriculum delivery across all remote teams.</p>
+          <div class="metric-row">
+            <div class="metric"><div class="metric-val">SCORM</div><div class="metric-lbl">Content Format</div></div>
+            <div class="metric"><div class="metric-val">Remote</div><div class="metric-lbl">Delivery Mode</div></div>
+            <div class="metric"><div class="metric-val">SEA</div><div class="metric-lbl">Coverage</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-card-header">
+          <div class="icon">🎮</div>
+          <div>
+            <h3>Gamified Learning Initiative</h3>
+            <div class="sub">Alpha Iota BPO</div>
+          </div>
+        </div>
+        <div class="portfolio-card-body">
+          <p>Configured and launched virtual escape room activities within the LMS to boost engagement, increasing learner participation in training sessions measurably.</p>
+          <div class="metric-row">
+            <div class="metric"><div class="metric-val">↑ Eng.</div><div class="metric-lbl">Engagement</div></div>
+            <div class="metric"><div class="metric-val">LMS</div><div class="metric-lbl">Delivery</div></div>
+            <div class="metric"><div class="metric-val">Virtual</div><div class="metric-lbl">Format</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-card-header">
+          <div class="icon">💡</div>
+          <div>
+            <h3>Programming Curriculum for Japanese Learners</h3>
+            <div class="sub">Sun Asterisk</div>
+          </div>
+        </div>
+        <div class="portfolio-card-body">
+          <p>Developed a structured, sequenced programming curriculum covering HTML, CSS, JavaScript, Python, Scratch, and Minecraft — tailored for Japanese team members in a remote environment.</p>
+          <div class="metric-row">
+            <div class="metric"><div class="metric-val">6</div><div class="metric-lbl">Subjects</div></div>
+            <div class="metric"><div class="metric-val">Remote</div><div class="metric-lbl">Delivery</div></div>
+            <div class="metric"><div class="metric-val">MVP</div><div class="metric-lbl">Awarded</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-card-header">
+          <div class="icon">📋</div>
+          <div>
+            <h3>Data Audits &amp; Reporting Support</h3>
+            <div class="sub">Alpha Iota BPO</div>
+          </div>
+        </div>
+        <div class="portfolio-card-body">
+          <p>Conducted routine LMS data audits to validate training records and completion data, supporting accurate quarterly performance reporting and KPI alignment.</p>
+          <div class="metric-row">
+            <div class="metric"><div class="metric-val">Ongoing</div><div class="metric-lbl">Cadence</div></div>
+            <div class="metric"><div class="metric-val">KPI</div><div class="metric-lbl">Aligned</div></div>
+            <div class="metric"><div class="metric-val">100%</div><div class="metric-lbl">Accuracy Goal</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-card-header">
+          <div class="icon">🔬</div>
+          <div>
+            <h3>Registered Psychometrician</h3>
+            <div class="sub">PRC License — Since 2017</div>
+          </div>
+        </div>
+        <div class="portfolio-card-body">
+          <p>Licensed RPm since December 2017 — applying psychological assessment principles to learner evaluation design, competency mapping, and data-driven training improvement.</p>
+          <div class="metric-row">
+            <div class="metric"><div class="metric-val">2017</div><div class="metric-lbl">Licensed</div></div>
+            <!-- FIX: changed from "7+ Yrs Practice" to "Active" credential status -->
+            <div class="metric"><div class="metric-val">Active</div><div class="metric-lbl">PRC License</div></div>
+            <div class="metric"><div class="metric-val">RPm</div><div class="metric-lbl">Credential</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section id="videos">
+  <div class="section-inner">
+    <div class="section-label">Training Content</div>
+    <h2 class="section-title">My YouTube Playlists</h2>
+    <p class="videos-intro">These playlists are part of my instructional content work — each one is a structured series designed to build a specific thinking skill. They reflect my approach to curriculum sequencing, learner engagement, and visual storytelling for education.</p>
+    <div class="videos-grid">
+
+      <div class="video-card">
+        <div class="video-thumb"><div class="video-thumb-icon">▶️</div></div>
+        <div class="video-info">
+          <div class="video-tag">Playlist · Decision Making</div>
+          <div class="video-title">Decision Logic</div>
+          <p class="video-desc">A structured series on how to think through decisions systematically — covering logic frameworks, evaluating options, and avoiding common reasoning pitfalls.</p>
+          <a href="https://www.youtube.com/playlist?list=PLcZbIuKqVvMOY2neezLU6Q3CPFjxMLPRT" target="_blank" class="video-link">Watch full playlist →</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-thumb"><div class="video-thumb-icon">▶️</div></div>
+        <div class="video-info">
+          <div class="video-tag">Playlist · Critical Thinking</div>
+          <div class="video-title">Consequence Forecasting</div>
+          <p class="video-desc">Teaches learners to anticipate outcomes before acting — building the habit of thinking ahead, weighing impacts, and making proactive rather than reactive choices.</p>
+          <a href="https://www.youtube.com/playlist?list=PLcZbIuKqVvMNilgWDEOKAm17fHcBYvk9b" target="_blank" class="video-link">Watch full playlist →</a>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-thumb"><div class="video-thumb-icon">▶️</div></div>
+        <div class="video-info">
+          <div class="video-tag">Playlist · Risk Awareness</div>
+          <div class="video-title">Risk Recognition</div>
+          <p class="video-desc">A series focused on identifying risks early — helping learners spot warning signs, assess exposure, and develop the awareness needed to respond before problems escalate.</p>
+          <a href="https://www.youtube.com/playlist?list=PLcZbIuKqVvMPd3F_WoB8udlDxuKwtCDD7" target="_blank" class="video-link">Watch full playlist →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Education &amp; Certifications</h2>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-type">Degree</div>
+        <div class="edu-degree">Bachelor of Science in Psychology</div>
+        <div class="edu-school">University of the East – Manila</div>
+        <div class="edu-year">Sampaloc, Manila</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-type">License</div>
+        <div class="edu-degree">Registered Psychometrician (RPm)</div>
+        <div class="edu-school">Professional Regulation Commission</div>
+        <div class="edu-year">Licensed since December 2017</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-type">Certification</div>
+        <div class="edu-degree">Teaching English as a Global Language</div>
+        <div class="edu-school">Bridge Education Group</div>
+        <div class="edu-year">20-Hour Micro-credential · May 2021</div>
+      </div>
+      <!-- FIX: changed label from "Ongoing" to "Certification" — no more overflow issue -->
+      <div class="edu-card">
+        <div class="edu-type">Certification</div>
+        <div class="edu-degree">SCORM &amp; xAPI Content Standards</div>
+        <div class="edu-school">Applied through LMS administration work</div>
+        <div class="edu-year">Practical experience with SCORM packaging &amp; deployment</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
 <section id="contact">
   <div class="section-inner">
-    <h2>Open to opportunities.</h2>
-    <p>Currently looking for LMS Administrator and L&D Operations roles — remote only.</p>
+    <div class="section-label">Let's Connect</div>
+    <h2 class="section-title">Open to opportunities.</h2>
+    <p class="contact-sub">Currently looking for LMS Administrator and L&D Operations roles — remote only.</p>
+    <div class="contact-links">
+     <a href="mailto:youremail@gmail.com" class="contact-link"> ✉️ rayalucero@gmail.com</a>
+      <a href="tel:+639478101530" class="contact-link">📞 +63 947 810 1530</a>
+      <a href="https://linkedin.com/in/radgelouise/" target="_blank" class="contact-link">💼 linkedin.com/in/radgelouise</a>
+      <a href="#" class="contact-link"> Philippines — Remote Only</a>
+    </div>
   </div>
 </section>
 
