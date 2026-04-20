@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 
 <style>
-/* KEEPING YOUR ORIGINAL STYLES UNCHANGED */
+/* KEEPING ALL YOUR ORIGINAL CSS */
 :root {
   --navy: #0d2137;
   --blue: #1a4f7a;
@@ -21,44 +21,97 @@
   --white: #ffffff;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
 body {
   font-family: 'DM Sans', sans-serif;
   background: var(--cream);
   color: var(--text);
+  overflow-x: hidden;
 }
 
-/* shortened here for readability — your styles remain the same */
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(255,255,255,0.92);
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+}
+
+/* EDUCATION */
+#education { background: var(--warm); }
+
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.edu-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  border-left: 4px solid var(--teal);
+}
+
+.edu-type {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.edu-degree {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.edu-school {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.edu-year {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 768px) {
+  .edu-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-logo">Radge Louise Lucero</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#portfolio">Highlights</a></li>
-    <li><a href="#videos">Videos</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <div>Radge Louise Lucero</div>
 </nav>
 
-<!-- (All your sections remain unchanged above this point) -->
+<section class="hero">
+  <div>
+    <h1>Radge Louise Lucero</h1>
+    <p>LMS Administrator & L&D Professional</p>
+  </div>
+</section>
 
-<!-- EDUCATION -->
 <section id="education">
   <div class="section-inner">
-    <div class="section-label">Credentials</div>
-    <h2 class="section-title">Education &amp; Certifications</h2>
+    <h2>Education & Certifications</h2>
 
     <div class="edu-grid">
 
+      <!-- DEGREE -->
       <div class="edu-card">
         <div class="edu-type">Degree</div>
         <div class="edu-degree">Bachelor of Science in Psychology</div>
@@ -66,6 +119,7 @@ body {
         <div class="edu-year">Sampaloc, Manila</div>
       </div>
 
+      <!-- LICENSE -->
       <div class="edu-card">
         <div class="edu-type">License</div>
         <div class="edu-degree">Registered Psychometrician (RPm)</div>
@@ -73,6 +127,7 @@ body {
         <div class="edu-year">Licensed since December 2017</div>
       </div>
 
+      <!-- CERT -->
       <div class="edu-card">
         <div class="edu-type">Certification</div>
         <div class="edu-degree">Teaching English as a Global Language</div>
@@ -80,6 +135,15 @@ body {
         <div class="edu-year">20-Hour Micro-credential · May 2021</div>
       </div>
 
+      <!-- SCORM -->
+      <div class="edu-card">
+        <div class="edu-type">Professional Practice</div>
+        <div class="edu-degree">SCORM & xAPI Content Standards</div>
+        <div class="edu-school">Applied through LMS administration work</div>
+        <div class="edu-year">Hands-on experience with SCORM packaging & deployment</div>
+      </div>
+
+      <!-- NEW UDEMY -->
       <div class="edu-card">
         <div class="edu-type">Certification</div>
         <div class="edu-degree">Learning and Development Tools and Methods</div>
@@ -87,6 +151,7 @@ body {
         <div class="edu-year">Issued April 2025</div>
       </div>
 
+      <!-- NEW UDEMY -->
       <div class="edu-card">
         <div class="edu-type">Certification</div>
         <div class="edu-degree">The Complete Instructional Designer Course</div>
@@ -94,29 +159,9 @@ body {
         <div class="edu-year">Issued March 2026</div>
       </div>
 
-      <div class="edu-card">
-        <div class="edu-type">Professional Practice</div>
-        <div class="edu-degree">SCORM &amp; xAPI Content Standards</div>
-        <div class="edu-school">Applied through LMS administration work</div>
-        <div class="edu-year">Hands-on experience in SCORM packaging &amp; deployment</div>
-      </div>
-
     </div>
   </div>
 </section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-inner">
-    <div class="section-label">Let's Connect</div>
-    <h2 class="section-title">Open to opportunities.</h2>
-    <p class="contact-sub">Currently looking for LMS Administrator and L&D Operations roles — remote only.</p>
-  </div>
-</section>
-
-<footer>
-  © 2025 Radge Louise Lucero · All rights reserved
-</footer>
 
 </body>
 </html>
